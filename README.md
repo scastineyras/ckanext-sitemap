@@ -17,9 +17,9 @@ To install ckanext-sitemap:
 
 2. Clone the source and install it on the virtualenv
 
-    git clone https://github.com/scastineyras/ckanext-sitemap.git
-    cd ckanext-sitemap
-    pip install -e .
+   git clone https://github.com/scastineyras/ckanext-sitemap.git
+   cd ckanext-sitemap
+   pip install -e .
 	pip install -r requirements.txt
 
 3. Add `sitemap` to the `ckan.plugins` setting in your CKAN
