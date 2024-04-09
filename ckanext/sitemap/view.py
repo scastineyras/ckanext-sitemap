@@ -1,9 +1,10 @@
 import logging
 from datetime import datetime, timezone
-from ckan.plugins import toolkit
 import os
 
 from flask import Blueprint, make_response
+import ckan.model as model
+from ckan.common import c
 
 import ckan.plugins.toolkit as tk
 from lxml import etree
@@ -33,7 +34,7 @@ def sitemap_controller():
     def _create_file(filename, root):
         log.info("Creating new sitemap.xml file: %s", filename)
         
-        context = {'model': toolkit.model, 'session': toolkit.model.Session, 'user': toolkit.c.user or toolkit.c.author}
+        context = {'model': model, 'session': model.Session, 'user': c.user or c.author}
         data_dict = {
             'q': '*:*',
             'start': 0,
@@ -41,7 +42,7 @@ def sitemap_controller():
         }
 
         # Use the package_search action to query datasets
-        search_action = toolkit.get_action('package_search')
+        search_action = tk.get_action('package_search')
         search_results = search_action(context, data_dict)
         datasets = search_results['results']
 
