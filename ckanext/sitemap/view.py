@@ -45,6 +45,8 @@ def sitemap_controller():
         search_action = tk.get_action('package_search')
         search_results = search_action(context, data_dict)
         datasets = search_results['results']
+        print("SERGIOANDRES")
+        print(datasets)
 
         all_ckan_urls = [
             tk.url_for(controller="home", action="index", _external=True),
@@ -61,6 +63,7 @@ def sitemap_controller():
         for pkg in datasets:
             url = etree.SubElement(root, "url")
             loc = etree.SubElement(url, "loc")
+            print(pkg)
             pkg_url = tk.url_for(controller="dataset", action="read", id=pkg.name)
             loc.text = tk.config.get("ckan.site_url") + pkg_url
             lastmod = etree.SubElement(url, "lastmod")
